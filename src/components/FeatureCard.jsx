@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
-// Componente simples para cada Card
 const FeatureCard = ({ title, description, icon: Icon }) => (
   <div className="bg-[#f9f9f9] p-6 rounded-xl shadow-md border border-gray-200
                   hover:shadow-lg hover:scale-[1.02] transition-transform
@@ -25,7 +24,6 @@ const FeatureCards = () => {
     {
       title: 'Quick Transfer',
       description: 'Convert your playlist in seconds',
-      // Ícone pode ser importado diretamente ou de qualquer outra lib
       icon: require('lucide-react').Zap
     },
     {

@@ -6,11 +6,11 @@ const AudioWaveAnimation = () => {
   return (
     <div className="w-full flex justify-center items-center py-8">
       <div 
-        className="flex justify-between h-16 w-full max-w-[1200px]" // Definimos uma largura máxima para evitar distorções em telas muito grandes
+        className="flex justify-between h-16 w-full max-w-[1200px]"
         style={{
-          '--boxSize': '12px', // Aumentamos o tamanho da barra
-          '--gutter': '8px',   // Aumentamos o espaçamento
-          gap: 'var(--gutter)' // Usando gap para espaçamento consistente
+          '--boxSize': '12px', 
+          '--gutter': '8px',   
+          gap: 'var(--gutter)' 
         }}
       >
         {Array.from({ length: bars }).map((_, index) => (
@@ -20,7 +20,7 @@ const AudioWaveAnimation = () => {
             style={{
               maxWidth: 'var(--boxSize)',
               animation: `${index % 3 === 0 ? 'normal' : index % 2 === 0 ? 'loud' : 'quiet'} 1.2s ease-in-out infinite`,
-              animationDelay: `${index * 0.2}s`, // Adicionando delay para criar um efeito ondulado
+              animationDelay: `${index * 0.2}s`, 
               transform: 'scaleY(0.4)'
             }}
           />

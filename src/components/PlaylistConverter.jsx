@@ -5,7 +5,6 @@ import { ArrowRight, Play } from 'lucide-react';
 import FeatureCards from '../components/FeatureCard';
 import AudioWaveAnimation from '../components/AudioWaveAnimation';
 
-// Exemplo básico de verificação se a URL contem "deezer.com/playlist"
 function isValidDeezerUrl(url) {
   return url.includes('deezer.com/playlist');
 }
@@ -14,13 +13,11 @@ const PlaylistConverter = () => {
   const [deezerUrl, setDeezerUrl] = useState('');
   const [isConverting, setIsConverting] = useState(false);
   const [convertStatus, setConvertStatus] = useState(null); 
-  // 'success', 'error' ou null, para exibir feedback ao usuário
   const [isUrlValid, setIsUrlValid] = useState(true);
 
   const handleConvert = (e) => {
     e.preventDefault();
 
-    // Validação simples
     if (!isValidDeezerUrl(deezerUrl)) {
       setIsUrlValid(false);
       return;
@@ -31,13 +28,9 @@ const PlaylistConverter = () => {
     setIsConverting(true);
     setConvertStatus(null);
 
-    // Simulação de conversão...
     setTimeout(() => {
-      // Exemplo de “sucesso”
       setIsConverting(false);
       setConvertStatus('success');
-      // Caso quisesse simular erro, você poderia usar:
-      // setConvertStatus('error');
     }, 2000);
   };
 
@@ -60,10 +53,8 @@ const PlaylistConverter = () => {
         </div>
       </nav>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-16">
         
-        {/* Seção "hero" */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">
             Convert your playlists instantly
@@ -74,7 +65,6 @@ const PlaylistConverter = () => {
         </div>
         <AudioWaveAnimation />
 
-        {/* Formulário de conversão */}
         <div className="bg-[#2a2a2a] p-8 rounded-lg shadow-xl">
           <form onSubmit={handleConvert}>
             <div className="mb-6">
@@ -119,7 +109,6 @@ const PlaylistConverter = () => {
             </button>
           </form>
 
-          {/* Exemplo de mensagem de feedback pós-conversão */}
           {convertStatus === 'success' && (
             <div className="mt-4 p-3 bg-green-700 text-white rounded-md">
               Playlist convertida com sucesso!
@@ -132,7 +121,6 @@ const PlaylistConverter = () => {
           )}
         </div>
 
-        {/* Cards de recursos */}
         <FeatureCards />
       </main>
     </div>
