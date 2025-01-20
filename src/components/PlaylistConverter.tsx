@@ -2,8 +2,8 @@
 
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
-import FeatureCards from './FeatureCard';
-import AudioWaveAnimation from './AudioWaveAnimation';
+import FeatureCards from './featureCards';
+import AudioWaveAnimation from './audioWaveAnimation';
 
 const isValidDeezerUrl = (url: string): boolean => {
   return url.includes('deezer.com/playlist');
@@ -43,34 +43,34 @@ const PlaylistConverter: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1e1e1e] text-[#d4cfbf]">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-950 via-purple-900 to-violet-950 text-white overflow-hidden">
       <nav className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Play className="w-8 h-8 text-[#4d9375]" />
-              <span className="ml-2 text-xl font-semibold tracking-wider">
-                <span className='mr-2'>M e l o d y</span>M o v e r
+              <Play className="w-8 h-8 text-purple-400" />
+              <span className="text-xl sm:text-2xl font-bold ml-2">
+                Melody Mover
               </span>
             </div>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto px-4 py-16">
+      <main className="max-w-6xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">
             Convert your playlists instantly
           </h1>
-          <p className="text-lg text-[#758575] max-w-xl mx-auto">
+          <p className="text-lg text-gray-300 max-w-xl mx-auto">
             Transform your Deezer playlists into Spotify collections with just one click.
           </p>
         </div>
         <AudioWaveAnimation />
 
-        <div className="bg-[#2a2a2a] p-8 rounded-lg shadow-xl">
-          <form onSubmit={handleConvert}>
-            <div className="mb-6">
+        <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-8 rounded-lg shadow-xl max-w-2xl mx-auto">
+          <form onSubmit={handleConvert} className="flex flex-col items-center">
+            <div className="w-full mb-6">
               <label htmlFor="playlist-url" className="block mb-2 text-sm font-medium">
                 Deezer Playlist URL
               </label>
@@ -98,33 +98,41 @@ const PlaylistConverter: React.FC = () => {
 
             <button
               type="submit"
-              className={`w-full py-3 px-4 rounded-md flex items-center justify-center space-x-2
-                ${
-                  isConverting
-                    ? 'bg-[#3d7460] cursor-not-allowed'
-                    : 'bg-[#4d9375] hover:bg-[#3d7460]'
-                }
-                text-white transition-colors`}
+              className={`w-full sm:w-auto bg-gradient-to-r from-purple-500 to-pink-500 
+                px-8 py-3 rounded-full font-semibold flex items-center justify-center gap-2 
+                transition-all duration-300 transform hover:scale-105 hover:shadow-lg
+                ${isConverting ? 'opacity-50 cursor-not-allowed' : 'hover:opacity-90'}`}
               disabled={isConverting}
             >
-              <span>{isConverting ? 'Converting...' : 'Convert to Spotify'}</span>
-              {!isConverting && <ArrowRight className="w-4 h-4" />}
+              {isConverting ? (
+                <>
+                  <span>Converting...</span>
+                  <ArrowRight className="w-4 h-4 animate-spin" />
+                </>
+              ) : (
+                <>
+                  <span>Convert to Spotify</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
             </button>
           </form>
 
           {convertStatus === 'success' && (
-            <div className="mt-4 p-3 bg-green-700 text-white rounded-md">
+            <div className="mt-4 p-3 bg-green-700 text-white rounded-md text-center">
               Playlist convertida com sucesso!
             </div>
           )}
           {convertStatus === 'error' && (
-            <div className="mt-4 p-3 bg-red-700 text-white rounded-md">
+            <div className="mt-4 p-3 bg-red-700 text-white rounded-md text-center">
               Ocorreu um erro na conversão. Tente novamente.
             </div>
           )}
         </div>
 
-        <FeatureCards />
+        <div className="mt-10">
+          <FeatureCards />
+        </div>
       </main>
     </div>
   );

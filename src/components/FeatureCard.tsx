@@ -1,73 +1,22 @@
 "use client";
 
 import React from 'react';
-import { ArrowRight, Zap, Target, Gift, LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 
-// Definição da interface para as props do FeatureCard
 interface FeatureCardProps {
   title: string;
   description: string;
-  icon: LucideIcon; // Tipo para o ícone importado do lucide-react
+  icon: LucideIcon; 
 }
 
-// Componente funcional FeatureCard com tipagem das props
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon: Icon }) => (
-  <div className="bg-[#f9f9f9] p-6 rounded-xl shadow-md border border-gray-200
-                  hover:shadow-lg hover:scale-[1.02] transition-transform
-                  duration-300 hover:border-green-200">
-    <div className="flex items-center mb-4">
-      <div className="p-2 bg-green-50 rounded-lg">
-        <Icon className="w-6 h-6 text-green-600" />
-      </div>
-      <h3 className="text-lg text-green-600 font-semibold ml-3">{title}</h3>
+  <div className="group p-6 sm:p-8 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-105">
+    <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4 group-hover:bg-purple-500/30 transition-colors">
+      <Icon className="w-6 h-6 text-purple-400" />
     </div>
-    <p className="text-gray-600 mb-4">{description}</p>
-    <div className="flex items-center text-green-600 hover:text-green-700 cursor-pointer group">
-      <span className="text-sm font-medium">Learn more</span>
-      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-    </div>
+    <h3 className="text-lg sm:text-xl font-semibold mb-2">{title}</h3>
+    <p className="text-sm sm:text-base text-gray-400">{description}</p>
   </div>
 );
 
-// Definição da interface para os objetos de features
-interface Feature {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-// Componente funcional FeatureCards com tipagem
-const FeatureCards: React.FC = () => {
-  const features: Feature[] = [
-    {
-      title: 'Quick Transfer',
-      description: 'Convert your playlist in seconds',
-      icon: Zap,
-    },
-    {
-      title: 'Track Matching',
-      description: 'Smart algorithm for accurate matching',
-      icon: Target,
-    },
-    {
-      title: 'Free to Use',
-      description: 'No registration required',
-      icon: Gift,
-    },
-  ];
-
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 p-6">
-      {features.map((feature, index) => (
-        <FeatureCard
-          key={index}
-          title={feature.title}
-          description={feature.description}
-          icon={feature.icon}
-        />
-      ))}
-    </div>
-  );
-};
-
-export default FeatureCards;
+export default FeatureCard;

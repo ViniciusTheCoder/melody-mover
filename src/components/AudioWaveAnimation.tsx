@@ -20,7 +20,7 @@ const AudioWaveAnimation: React.FC<AudioWaveAnimationProps> = () => {
         {Array.from({ length: bars }).map((_, index: number) => (
           <div
             key={index}
-            className="h-full rounded-lg bg-[#3d7460] flex-1"
+            className="h-full rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex-1"
             style={{
               maxWidth: 'var(--boxSize)',
               animation: `${index % 3 === 0 ? 'normal' : index % 2 === 0 ? 'loud' : 'quiet'} 1.2s ease-in-out infinite`,
