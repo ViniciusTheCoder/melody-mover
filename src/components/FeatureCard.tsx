@@ -1,7 +1,17 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+"use client";
 
-const FeatureCard = ({ title, description, icon: Icon }) => (
+import React from 'react';
+import { ArrowRight, Zap, Target, Gift, LucideIcon } from 'lucide-react';
+
+// Definição da interface para as props do FeatureCard
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: LucideIcon; // Tipo para o ícone importado do lucide-react
+}
+
+// Componente funcional FeatureCard com tipagem das props
+const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon: Icon }) => (
   <div className="bg-[#f9f9f9] p-6 rounded-xl shadow-md border border-gray-200
                   hover:shadow-lg hover:scale-[1.02] transition-transform
                   duration-300 hover:border-green-200">
@@ -19,23 +29,31 @@ const FeatureCard = ({ title, description, icon: Icon }) => (
   </div>
 );
 
-const FeatureCards = () => {
-  const features = [
+// Definição da interface para os objetos de features
+interface Feature {
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+// Componente funcional FeatureCards com tipagem
+const FeatureCards: React.FC = () => {
+  const features: Feature[] = [
     {
       title: 'Quick Transfer',
       description: 'Convert your playlist in seconds',
-      icon: require('lucide-react').Zap
+      icon: Zap,
     },
     {
       title: 'Track Matching',
       description: 'Smart algorithm for accurate matching',
-      icon: require('lucide-react').Target
+      icon: Target,
     },
     {
       title: 'Free to Use',
       description: 'No registration required',
-      icon: require('lucide-react').Gift
-    }
+      icon: Gift,
+    },
   ];
 
   return (

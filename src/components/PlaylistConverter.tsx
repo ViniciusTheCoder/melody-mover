@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
-import FeatureCards from '../components/FeatureCard';
-import AudioWaveAnimation from '../components/AudioWaveAnimation';
+import FeatureCards from './FeatureCard';
+import AudioWaveAnimation from './AudioWaveAnimation';
 
-function isValidDeezerUrl(url) {
+const isValidDeezerUrl = (url: string): boolean => {
   return url.includes('deezer.com/playlist');
-}
+};
 
-const PlaylistConverter = () => {
-  const [deezerUrl, setDeezerUrl] = useState('');
-  const [isConverting, setIsConverting] = useState(false);
-  const [convertStatus, setConvertStatus] = useState(null); 
-  const [isUrlValid, setIsUrlValid] = useState(true);
+type ConvertStatus = 'success' | 'error' | null;
 
-  const handleConvert = (e) => {
+const PlaylistConverter: React.FC = () => {
+  const [deezerUrl, setDeezerUrl] = useState<string>('');
+  const [isConverting, setIsConverting] = useState<boolean>(false);
+  const [convertStatus, setConvertStatus] = useState<ConvertStatus>(null); 
+  const [isUrlValid, setIsUrlValid] = useState<boolean>(true);
+
+  const handleConvert = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     if (!isValidDeezerUrl(deezerUrl)) {
@@ -34,7 +36,7 @@ const PlaylistConverter = () => {
     }, 2000);
   };
 
-  const handleUrlChange = (e) => {
+  const handleUrlChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setDeezerUrl(e.target.value);
     setIsUrlValid(true);
     setConvertStatus(null);
@@ -46,15 +48,16 @@ const PlaylistConverter = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-            <Play className="w-8 h-8 text-[#4d9375]" />
-              <span className="ml-2 text-xl font-semibold tracking-wider ml-2"><span className='mr-2'>M e l o d y</span>M o v e r</span>
+              <Play className="w-8 h-8 text-[#4d9375]" />
+              <span className="ml-2 text-xl font-semibold tracking-wider">
+                <span className='mr-2'>M e l o d y</span>M o v e r
+              </span>
             </div>
           </div>
         </div>
       </nav>
 
       <main className="max-w-4xl mx-auto px-4 py-16">
-        
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">
             Convert your playlists instantly
